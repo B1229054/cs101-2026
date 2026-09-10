@@ -1,8 +1,6 @@
 #include <stdio.h>
 
-int main()
-{
+int main(){
     printf("*****\n*****\n*****\n*****\n*****");
-
     return 0;
 }
