@@ -18,7 +18,6 @@ int main() {
         return 1;
     }
 
-    // 取得目前時間並去掉 ctime() 內建的換行符號
     time_t curtime;
     time(&curtime);
     char *time_str = ctime(&curtime);
@@ -29,20 +28,17 @@ int main() {
         }
     }
 
-    // 寫入檔頭與時間
     fprintf(fp, "========= lotto649 =========\n");
     fprintf(fp, "= %s =\n", time_str);
 
     srand((unsigned)time(NULL));
 
-    // 產生 5 組輸出格式
     for (int i = 1; i <= 5; i++) {
         fprintf(fp, "[%d]: ", i);
         if (i <= n) {
             int lotto[7];
-            int used[70] = {0}; // 記錄 1~69 是否已抽出
+            int used[70] = {0}; 
 
-            // 抽出 7 個不重複的數字 (01~69)
             for (int j = 0; j < 7; j++) {
                 int num;
                 do {
@@ -52,7 +48,6 @@ int main() {
                 lotto[j] = num;
             }
 
-            // 將前 6 個號碼由小到大排序 (泡沫排序)
             for (int a = 0; a < 5; a++) {
                 for (int b = 0; b < 5 - a; b++) {
                     if (lotto[b] > lotto[b + 1]) {
@@ -63,13 +58,12 @@ int main() {
                 }
             }
 
-            // 寫入 7 個號碼 (補零成兩位數)
             for (int j = 0; j < 7; j++) {
                 fprintf(fp, "%02d ", lotto[j]);
             }
             fprintf(fp, "\n");
         } else {
-            // 未購買的組別印出 --
+
             fprintf(fp, "-- -- -- -- -- -- -- \n");
         }
     }
